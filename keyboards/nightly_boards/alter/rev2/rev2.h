@@ -39,4 +39,3 @@
     { KC_NO, K31,   KC_NO, K33,   K34,   K35,   K36,   K37,   K38,   K39,   K3A,   K3B,   K3C,   K3D,   K3E,   K3F   }, \
     { KC_NO, K41,   KC_NO, KC_NO, K44,   K45,   K46,   KC_NO, K48,   KC_NO, KC_NO, K4B,   KC_NO, KC_NO, K4E,   KC_NO }, \
 }
-}
