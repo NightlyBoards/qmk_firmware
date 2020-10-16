@@ -22,69 +22,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_QUOT, KC_ENT,
 		KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
 		KC_LCTL,  KC_LALT,   	    KC_SPC,  MO(1),                     KC_SPC,                    KC_RGUI, KC_LCTL,
-		KC_VOLD,  KC_VOLU,
+		KC_VOLD,  KC_VOLU
     ),
     [1] = LAYOUT(
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,   KC_TRNS,   	    KC_TRNS, KC_TRNS,                   KC_TRNS,                    KC_TRNS,KC_TRNS,    
-		KC_TRNS,   KC_TRNS, 
+		KC_TRNS,   KC_TRNS,   	    KC_TRNS, KC_TRNS,                   KC_TRNS,                    KC_TRNS,KC_TRNS,
+		KC_TRNS, KC_TRNS
     ),
     [2] = LAYOUT(
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,   KC_TRNS,   	    KC_TRNS, KC_TRNS,                   KC_TRNS,                    KC_TRNS,KC_TRNS,    
-		KC_TRNS,   KC_TRNS,   
+		KC_TRNS,   KC_TRNS,   	    KC_TRNS, KC_TRNS,                   KC_TRNS,                    KC_TRNS,KC_TRNS,
+		KC_TRNS, KC_TRNS
     ),
     [3] = LAYOUT(
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 		KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS,   KC_TRNS,   	    KC_TRNS, KC_TRNS,                   KC_TRNS,                    KC_TRNS,KC_TRNS,    
-		KC_TRNS,   KC_TRNS,  
-    ),
+		KC_TRNS,   KC_TRNS,   	    KC_TRNS, KC_TRNS,                   KC_TRNS,                    KC_TRNS,KC_TRNS,
+		KC_TRNS, KC_TRNS
+    )
 };
 
-/* E00A is row 2 col 0 (see LAYOUT) */
-keyevent_t encoder2_cw  = {
-    .key = (keypos_t){.row = 4, .col = 1},
-    .pressed = false
-};
-/* E00B is row 2 col 1 (see LAYOUT) */
-keyevent_t encoder2_ccw  = {
-    .key = (keypos_t){.row = 4, .col = 0},
-    .pressed = false
-};
-
-void matrix_scan_user(void) {
-    if (IS_PRESSED(encoder_cw)) { /* release enconder CW */
-        encoder_cw.pressed = false;
-        encoder_cw.time = (timer_read() | 1);
-        action_exec(encoder_cw);
-    }
-
-    if (IS_PRESSED(encoder_ccw)) { /* release enconder CCW */
-        encoder_ccw.pressed = false;
-        encoder_ccw.time = (timer_read() | 1);
-        action_exec(encoder_ccw);
-    }
-};
-
-void encoder_update_user(uint8_t index, bool clockwise) {
-    // uint8_t layer = get_highest_layer(layer_state);
-
-    if (index == 0) { /* First encoder */
-        if (clockwise) {
-            encoder_ccw.pressed = true;
-            encoder_ccw.time = (timer_read() | 1); /* time should not be 0 */
-            action_exec(encoder_ccw);
-        } else {
-            encoder_cw.pressed = true;
-            encoder_cw.time = (timer_read() | 1); /* time should not be 0 */
-            action_exec(encoder_cw);
-        }
-    }
-  }
-};

@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT [n]40-e
 
 /* key matrix size */
-#define MATRIX_ROWS 4
+#define MATRIX_ROWS 5
 #define MATRIX_COLS 12
 
 /*
@@ -84,8 +84,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
 #endif
 
+#define ENCODERS 1
+
 #define ENCODERS_PAD_A { D3 }
 #define ENCODERS_PAD_B { D2 }
+
+#define ENCODERS_CW_KEY  { { 1, 4 } }
+#define ENCODERS_CCW_KEY { { 0, 4 } }
+
+#define ENCODER_RESOLUTION 4
+
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5

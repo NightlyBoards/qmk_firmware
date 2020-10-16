@@ -26,5 +26,7 @@ NKRO_ENABLE = yes             # USB Nkey Rollover
 BACKLIGHT_ENABLE = no         # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = yes         # Enable keyboard RGB underglow
 BLUETOOTH_ENABLE = no         # Enable Bluetooth
-AUDIO_ENABLE = no             # Audio output
+ENCODER_ENABLE = yes          # Enable Rotary Encoders
 
+# Added encoder Action
+SRC +=  ../../encoder_action.c
